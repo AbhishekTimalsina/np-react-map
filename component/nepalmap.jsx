@@ -11,8 +11,8 @@ function NepalMap({
   fill = "white",
   stroke = "black",
   hoverColor,
-  focusedDistrict,
-  focusedProvince,
+  focusDistrict,
+  focusProvince,
 }) {
   let mapRef = useRef(null);
 
@@ -30,7 +30,7 @@ function NepalMap({
 
   useEffect(() => {
     //animation
-    if (!focusedProvince?.animateAndZoom) return;
+    if (!focusProvince?.animateAndZoom) return;
     let scale = 2.5;
     let translateVals = highLightedProvince?.translateVals;
     if (highLightedProvince?.provinceId === 0) {
@@ -38,7 +38,9 @@ function NepalMap({
       scale = 1;
     }
     if (!highLightedProvince) {
-      console.error(`Only valid provinceId are 0-7`);
+      console.error(
+        `Invalid ProvinceId: ${focusProvince.provinceId}. Only valid provinceId are 0-7`
+      );
       scale = 1;
       translateVals = "translate(0%,0%)";
     }
@@ -48,13 +50,13 @@ function NepalMap({
       fill: "forwards",
     };
     mapRef.current.animate(keyFrames, timing);
-  }, [focusedProvince]);
+  }, [focusProvince]);
 
   let highLightedProvince;
-  if (focusedProvince) {
+  if (focusProvince) {
     // find the province from the districtByProvince array
     highLightedProvince = districtsByProvince.find((el) => {
-      return el.provinceId === focusedProvince.provinceId;
+      return el.provinceId === focusProvince.provinceId;
     });
   }
 
@@ -73,11 +75,10 @@ function NepalMap({
         style={{ fill, stroke }}
       >
         <g className="full-map" id="Nepal" ref={mapRef}>
-          {/* {districts} */}
           <Districts
-            focusedProvince={focusedProvince}
+            focusProvince={focusProvince}
             highLightedProvince={highLightedProvince}
-            focusedDistrict={focusedDistrict}
+            focusDistrict={focusDistrict}
           />
         </g>
       </svg>
@@ -87,22 +88,22 @@ function NepalMap({
 
 export default NepalMap;
 
-function Districts({ focusedProvince, focusedDistrict, highLightedProvince }) {
+function Districts({ focusProvince, focusDistrict, highLightedProvince }) {
   // create the 77 districts
 
   let district = useMemo(
     () =>
       mapData.map((el, i) => {
-        // checks if focusedDistrict.districtList contains the district currently in the interation
+        // checks if focusDistrict.districtList contains the district currently in the interation
         if (
-          doContains(focusedDistrict?.districtList, el.district) ||
+          doContains(focusDistrict?.districtList, el.district) ||
           doContains(highLightedProvince?.districtList, el.district)
         ) {
           let fill;
-          if (doContains(focusedDistrict?.districtList, el.district)) {
-            fill = focusedDistrict?.fill;
+          if (doContains(focusDistrict?.districtList, el.district)) {
+            fill = focusDistrict?.fill;
           } else {
-            fill = focusedProvince?.fill;
+            fill = focusProvince?.fill;
           }
           return (
             <path
@@ -115,7 +116,7 @@ function Districts({ focusedProvince, focusedDistrict, highLightedProvince }) {
         }
         return <path d={el.path} id={el.district} key={el.district} />;
       }),
-    [(focusedProvince, focusedDistrict, highLightedProvince)]
+    [(focusProvince, focusDistrict, highLightedProvince)]
   );
   return district;
 }

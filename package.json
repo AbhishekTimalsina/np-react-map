@@ -10,13 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/AbhishekTimalsina/np-react-map.git"
   },
-  "author": "",
+  "author": "Abhishek Timalsina",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AbhishekTimalsina/np-react-mapmap/issues"
   },
   "homepage": "https://github.com/AbhishekTimalsina/np-react-map#readme",
   "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

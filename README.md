@@ -8,31 +8,31 @@ embed nepalmap in react js application
 
 **props**
 
-| props           | Description                | Example Value       |
-| --------------- | -------------------------- | ------------------- |
-| `height`        | Set height                 | "500px"             |
-| `width`         | Set width                  | "500px"             |
-| `hoverColor`    | Set hover color            | "red"               |
-| `stroke`        | Set stroke(border)         | "blue"              |
-| `fill`          | set fill (color)           | "white"             |
-| focusedDistrict | focus of specific district | object(given below) |
-| focusedProvince | focus of specific district | object(given below) |
+| props         | Description                | Example Value       |
+| ------------- | -------------------------- | ------------------- |
+| `height`      | Set height                 | "500px"             |
+| `width`       | Set width                  | "500px"             |
+| `hoverColor`  | Set hover color            | "red"               |
+| `stroke`      | Set stroke(border)         | "blue"              |
+| `fill`        | set fill (color)           | "white"             |
+| focusDistrict | focus of specific district | object(given below) |
+| focusProvince | focus of specific district | object(given below) |
 
-#### focusedDistrict & focusedProvince object
+#### focusDistrict & focusProvince object
 
-**focusedDistrict**
+**focusDistrict**
 
 ```javascript
-focusedDistrict = {
+focusDistrict = {
   districtList: ["kavre", "kathmandu"],
   fill: "green",
 };
 ```
 
-**focusedProvince**
+**focusProvince**
 
 ```javascript
-focusedProvince = {
+focusProvince = {
   provinceId: provinceId,
   fill: "green",
   animateAndZoom: true,
