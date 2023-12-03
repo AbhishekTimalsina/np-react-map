@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AbhishekTimalsina/react-nepalmap.git"
+    "url": "git+https://github.com/AbhishekTimalsina/np-react-map.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AbhishekTimalsina/react-nepalmap/issues"
+    "url": "https://github.com/AbhishekTimalsina/np-react-mapmap/issues"
   },
-  "homepage": "https://github.com/AbhishekTimalsina/react-nepalmap#readme",
+  "homepage": "https://github.com/AbhishekTimalsina/np-react-map#readme",
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

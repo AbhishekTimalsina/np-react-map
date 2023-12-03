@@ -1,4 +1,4 @@
-# react-nepalmap
+# np-react-map
 
 embed nepalmap in react js application
 
