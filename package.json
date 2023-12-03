@@ -1,0 +1,23 @@
+{
+  "name": "np-react-map",
+  "version": "1.0.0",
+  "description": "Embed nepalmap in react app",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhishekTimalsina/react-nepalmap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbhishekTimalsina/react-nepalmap/issues"
+  },
+  "homepage": "https://github.com/AbhishekTimalsina/react-nepalmap#readme",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
