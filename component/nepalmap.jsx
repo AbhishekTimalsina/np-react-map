@@ -89,34 +89,36 @@ function NepalMap({
 export default NepalMap;
 
 function Districts({ focusProvince, focusDistrict, highLightedProvince }) {
-  // create the 77 districts
+  let pathRef = useRef([]);
+  useEffect(() => {
+    pathRef.current.forEach((el) => {
+      if (!el) return;
+      let fill = "";
+      let district = el.getAttribute("id");
+      if (doContains(highLightedProvince?.districtList, district)) {
+        fill = focusProvince?.fill;
+      }
+      if (doContains(focusDistrict?.districtList, district)) {
+        fill = focusDistrict?.fill;
+      }
+      el.style.fill = fill;
+    });
+  }, [focusProvince, focusDistrict]);
 
+  // create the 77 districts
   let district = useMemo(
     () =>
-      mapData.map((el, i) => {
-        // checks if focusDistrict.districtList contains the district currently in the interation
-        if (
-          doContains(focusDistrict?.districtList, el.district) ||
-          doContains(highLightedProvince?.districtList, el.district)
-        ) {
-          let fill;
-          if (doContains(focusDistrict?.districtList, el.district)) {
-            fill = focusDistrict?.fill;
-          } else {
-            fill = focusProvince?.fill;
-          }
-          return (
-            <path
-              d={el.path}
-              id={el.district}
-              key={el.district}
-              style={{ fill }}
-            />
-          );
-        }
-        return <path d={el.path} id={el.district} key={el.district} />;
+      mapData.map((el) => {
+        return (
+          <path
+            ref={(e) => pathRef.current.push(e)}
+            d={el.path}
+            id={el.district}
+            key={el.district}
+          />
+        );
       }),
-    [(focusProvince, focusDistrict, highLightedProvince)]
+    []
   );
   return district;
 }
