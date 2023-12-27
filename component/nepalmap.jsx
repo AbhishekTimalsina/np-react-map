@@ -31,12 +31,13 @@ function NepalMap({
   useEffect(() => {
     //animation
     if (!focusProvince?.animateAndZoom) return;
-    let scale = 2.5;
+    let scale = 2.3;
     let translateVals = highLightedProvince?.translateVals;
     if (highLightedProvince?.provinceId === 0) {
       // provinceId 0 should mean that whole map should be shown
       scale = 1;
     }
+
     if (!highLightedProvince) {
       console.error(
         `Invalid ProvinceId: ${focusProvince.provinceId}. Only valid provinceId are 0-7`
@@ -108,13 +109,13 @@ function Districts({ focusProvince, focusDistrict, highLightedProvince }) {
   // create the 77 districts
   let district = useMemo(
     () =>
-      mapData.map((el) => {
+      mapData.map((el, i) => {
         return (
           <path
             ref={(e) => pathRef.current.push(e)}
             d={el.path}
             id={el.district}
-            key={el.district}
+            key={el.district + i}
           />
         );
       }),
